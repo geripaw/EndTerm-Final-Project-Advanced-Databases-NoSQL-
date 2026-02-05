@@ -143,6 +143,3 @@ Revenue grouped by month
 
 Daniyar Sharipov: Backend, Database, API
 Nurlan Amangeldi: Frontend, UI, Integration
-
-
-
