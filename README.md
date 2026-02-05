@@ -139,7 +139,7 @@ Top products by revenue
 Revenue grouped by country
 Revenue grouped by month
 
-### Team Members:
+# Team Members:
 
 Daniyar Sharipov: Backend, Database, API
 Nurlan Amangeldi: Frontend, UI, Integration
