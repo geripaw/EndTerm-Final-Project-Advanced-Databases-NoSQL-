@@ -96,9 +96,9 @@ http://localhost:5173
 
 Authentication
 
-The project uses JWT authentication.
-Protected routes require Authorization header:
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTdmZDkwMmU1Y2ZmNmE4Y2E3MWRmOTAiLCJpYXQiOjE3Njk5ODY3OTcsImV4cCI6MTc3MDU5MTU5N30.WzseKgFPTPB1UIwuNixPcw1ovvd8ASVvLTX79F5PRIA
+- The project uses JWT authentication.
+- Protected routes require Authorization header:
+- Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTdmZDkwMmU1Y2ZmNmE4Y2E3MWRmOTAiLCJpYXQiOjE3Njk5ODY3OTcsImV4cCI6MTc3MDU5MTU5N30.WzseKgFPTPB1UIwuNixPcw1ovvd8ASVvLTX79F5PRIA
 
 
 
