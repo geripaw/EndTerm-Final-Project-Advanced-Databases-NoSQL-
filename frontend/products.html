@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products | ECOM PRO</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .category-badge {
+      background: linear-gradient(to right, #667eea, #764ba2);
+      color: white;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    
+    .search-bar {
+      margin-bottom: 25px;
+      display: flex;
+      gap: 10px;
+    }
+    
+    .search-bar input {
+      flex: 1;
+    }
+    
+    .filters {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+    }
+    
+    .filter-btn {
+      padding: 8px 20px;
+      border: 2px solid #e1e5e9;
+      border-radius: 20px;
+      background: white;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .filter-btn:hover, .filter-btn.active {
+      background: #667eea;
+      color: white;
+      border-color: #667eea;
+    }
+    
+    .products-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    
+    .stats-badge {
+      background: #f0f2f5;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: 600;
+      color: #555;
+    }
+  </style>
+</head>
+<body onload="loadProducts()">
+  <header>
+    <div class="logo">ECOM<span style="color:#764ba2">PRO</span></div>
+    <nav class="nav-links">
+      <a href="index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a>
+      <a href="orders.html"><i class="fas fa-clipboard-list"></i> Orders</a>
+      <a href="analytics.html"><i class="fas fa-chart-pie"></i> Analytics</a>
+      <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="products-header">
+      <h2><i class="fas fa-shopping-bag"></i> Product Management</h2>
+      <div class="stats-badge">
+        <i class="fas fa-box"></i> Total Products: <span id="totalCount">0</span>
+      </div>
+    </div>
+
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search products by name or category...">
+      <button class="btn-primary" onclick="searchProducts()">
+        <i class="fas fa-search"></i> Search
+      </button>
+      <button class="btn-secondary" onclick="clearSearch()">
+        <i class="fas fa-times"></i> Clear
+      </button>
+    </div>
+
+    <div class="filters">
+      <span>Filter by category:</span>
+      <button class="filter-btn active" onclick="filterByCategory('all')">All</button>
+      <button class="filter-btn" onclick="filterByCategory('electronics')">Electronics</button>
+      <button class="filter-btn" onclick="filterByCategory('clothing')">Clothing</button>
+      <button class="filter-btn" onclick="filterByCategory('books')">Books</button>
+      <button class="filter-btn" onclick="filterByCategory('home')">Home & Garden</button>
+    </div>
+
+    <div class="input-group">
+  <input id="name" placeholder="Product name" value="">
+  <input id="price" type="number" placeholder="Price ($)" value="">
+  <input id="category" placeholder="Category" value="">
+</div>
+
+<div style="margin-bottom: 25px;">
+  <button class="btn-success" onclick="createProduct()">
+    <i class="fas fa-plus-circle"></i> Add Product
+  </button>
+  <button id="updateBtn" class="btn-primary" onclick="updateProduct()" style="display:none;">
+    <i class="fas fa-save"></i> Update Product
+  </button>
+  <button class="btn-secondary" onclick="clearForm()" style="margin-left: 10px;">
+    <i class="fas fa-times"></i> Clear Form
+  </button>
+</div>
+
+    <div style="overflow-x: auto;">
+      <table>
+        <thead>
+          <tr>
+            <th><i class="fas fa-tag"></i> Name</th>
+            <th><i class="fas fa-dollar-sign"></i> Price</th>
+            <th><i class="fas fa-folder"></i> Category</th>
+            <th><i class="fas fa-calendar"></i> Created</th>
+            <th><i class="fas fa-cogs"></i> Actions</th>
+          </tr>
+        </thead>
+        <tbody id="productsList">
+          <!-- Products will load here -->
+          <tr>
+            <td colspan="5" style="text-align:center; padding:40px;">
+              <div class="loader"></div>
+              <p>Loading products...</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+      <button class="btn-secondary" onclick="prevPage()">
+        <i class="fas fa-chevron-left"></i> Previous
+      </button>
+      <span id="pageInfo">Page 1 of 1</span>
+      <button class="btn-secondary" onclick="nextPage()">
+        Next <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+
+    <div style="margin-top: 40px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+      <h3><i class="fas fa-lightbulb"></i> Quick Tips</h3>
+      <ul style="margin-top: 10px; color: #666;">
+        <li>Click <strong>Edit</strong> to modify a product</li>
+        <li>Use filters to view specific categories</li>
+        <li>Prices should be entered without currency symbol</li>
+        <li>Products are automatically saved to the database</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2024 E-Commerce Management System | Product Management Panel</p>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    // Дополнительные функции для products.html
+    function clearForm() {
+      document.getElementById("name").value = "";
+      document.getElementById("price").value = "";
+      document.getElementById("category").value = "";
+      document.getElementById("updateBtn").style.display = "none";
+      selectedId = null;
+      showAlert("Form cleared", "success");
+    }
+    
+    function searchProducts() {
+      const searchTerm = document.getElementById("searchInput").value.toLowerCase();
+      const rows = document.querySelectorAll("#productsList tr");
+      
+      rows.forEach(row => {
+        const text = row.textContent.toLowerCase();
+        row.style.display = text.includes(searchTerm) ? "" : "none";
+      });
+      
+      if (searchTerm) {
+        showAlert(`Search results for: "${searchTerm}"`, "success");
+      }
+    }
+    
+    function clearSearch() {
+      document.getElementById("searchInput").value = "";
+      const rows = document.querySelectorAll("#productsList tr");
+      rows.forEach(row => row.style.display = "");
+      showAlert("Search cleared", "success");
+    }
+    
+    function filterByCategory(category) {
+      // Обновляем активную кнопку
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      event.target.classList.add('active');
+      
+      // Фильтруем строки таблицы
+      const rows = document.querySelectorAll("#productsList tr");
+      rows.forEach(row => {
+        if (category === 'all') {
+          row.style.display = "";
+        } else {
+          const rowCategory = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
+          row.style.display = rowCategory.includes(category) ? "" : "none";
+        }
+      });
+      
+      showAlert(`Showing ${category === 'all' ? 'all' : category} products`, "success");
+    }
+    
+    // Обновляем loadProducts чтобы показывать количество
+    const originalLoadProducts = loadProducts;
+    loadProducts = async function() {
+      await originalLoadProducts();
+      
+      // Обновляем счетчик продуктов
+      const rows = document.querySelectorAll("#productsList tr");
+      const visibleCount = Array.from(rows).filter(row => row.style.display !== 'none').length;
+      document.getElementById("totalCount").textContent = visibleCount;
+    };
+  </script>
+</body>
+</html>

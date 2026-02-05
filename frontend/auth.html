@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | ECOM PRO</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header>
+    <div class="logo">ECOM<span style="color:#764ba2">PRO</span></div>
+    <nav class="nav-links">
+      <a href="index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="products.html"><i class="fas fa-shopping-bag"></i> Products</a>
+    </nav>
+  </header>
+
+  <div class="container" style="max-width: 500px; text-align: center;">
+    <h2><i class="fas fa-sign-in-alt"></i> Login</h2>
+    <p style="color: #666; margin-bottom: 30px;">Enter your credentials to access the admin panel</p>
+    
+    <div style="margin-bottom: 25px;">
+      <input id="email" placeholder="Email" style="width: 100%; margin-bottom: 15px;">
+      <input id="password" type="password" placeholder="Password" style="width: 100%; margin-bottom: 20px;">
+    </div>
+    
+    <button onclick="login()" class="btn-primary" style="width: 100%; padding: 15px;">
+      <i class="fas fa-lock"></i> Login
+    </button>
+    
+    <div style="margin-top: 25px; color: #888; font-size: 0.9rem;">
+      <p><strong>Demo Credentials:</strong></p>
+      <p>Email: admin@example.com</p>
+      <p>Password: any password works (demo mode)</p>
+    </div>
+  </div>
+
+  <script>
+    function login() {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      
+      if (!email || !password) {
+        alert('Please enter both email and password');
+        return;
+      }
+      
+      // Фейковый логин (без бэкенда)
+      localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("userEmail", email);
+      
+      // Показываем success message
+      const container = document.querySelector('.container');
+      const successDiv = document.createElement('div');
+      successDiv.className = 'alert alert-success';
+      successDiv.innerHTML = `
+        <i class="fas fa-check-circle"></i>
+        Login successful! Redirecting...
+      `;
+      container.insertBefore(successDiv, container.firstChild);
+      
+      // Редирект через 1 секунду
+      setTimeout(() => {
+        window.location.href = "products.html";
+      }, 1000);
+    }
+    
+    // Enter key support
+    document.getElementById('password').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') login();
+    });
+  </script>
+</body>
+</html>

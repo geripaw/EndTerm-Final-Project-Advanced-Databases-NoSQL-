@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Commerce Management System</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header>
+    <div class="logo">ECOM<span style="color:#764ba2">PRO</span></div>
+    <nav class="nav-links">
+      <a href="index.html" class="active"><i class="fas fa-home"></i> Home</a>
+      <a href="products.html"><i class="fas fa-shopping-bag"></i> Products</a>
+      <a href="dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a>
+      <a href="orders.html"><i class="fas fa-clipboard-list"></i> Orders</a>
+      <a href="analytics.html"><i class="fas fa-chart-pie"></i> Analytics</a>
+      <a href="#" id="authLink"><i class="fas fa-user"></i> Login</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div style="text-align: center; padding: 50px 20px;">
+      <h1 style="font-size: 3.5rem; margin-bottom: 20px;">
+        <span style="background: linear-gradient(to right, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+          E-Commerce Management System
+        </span>
+      </h1>
+      <p style="font-size: 1.3rem; color: #666; margin-bottom: 40px; max-width: 800px; margin: 0 auto 40px;">
+        Advanced NoSQL Database Management System for Modern E-Commerce
+      </p>
+      
+      <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 50px;">
+        <a href="products.html" style="text-decoration: none;">
+          <button class="btn-primary" style="padding: 15px 30px; font-size: 1.1rem;">
+            <i class="fas fa-rocket"></i> Get Started
+          </button>
+        </a>
+        <a href="dashboard.html" style="text-decoration: none;">
+          <button class="btn-secondary" style="padding: 15px 30px; font-size: 1.1rem;">
+            <i class="fas fa-chart-line"></i> View Dashboard
+          </button>
+        </a>
+      </div>
+      
+      <div class="stats-container" style="max-width: 1000px; margin: 0 auto;">
+        <div class="stat-card">
+          <i class="fas fa-box-open" style="font-size: 2.5rem; color: #667eea;"></i>
+          <div class="stat-label">Products Managed</div>
+          <div class="stat-value" id="totalProducts">0</div>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-shopping-cart" style="font-size: 2.5rem; color: #00b09b;"></i>
+          <div class="stat-label">Total Orders</div>
+          <div class="stat-value" id="totalOrders">0</div>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-dollar-sign" style="font-size: 2.5rem; color: #ff416c;"></i>
+          <div class="stat-label">Revenue Generated</div>
+          <div class="stat-value" id="totalRevenue">$0</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2024 E-Commerce Management System | Final Project – Advanced Databases (NoSQL)</p>
+    <p style="margin-top: 10px; opacity: 0.8;">
+      <i class="fas fa-database"></i> MongoDB | <i class="fas fa-server"></i> Express.js | 
+      <i class="fas fa-code"></i> Frontend Integration
+    </p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const authLink = document.getElementById('authLink');
+      const isLoggedIn = localStorage.getItem("isLoggedIn");
+      
+      if (isLoggedIn === "true") {
+        authLink.innerHTML = '<i class="fas fa-sign-out-alt"></i> Logout';
+        authLink.href = "#";
+        authLink.onclick = function() {
+          localStorage.removeItem("isLoggedIn");
+          window.location.href = "index.html";
+        };
+      } else {
+        authLink.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login';
+        authLink.href = "auth.html";
+      }
+      
+      // Загрузка статистики (заглушка)
+      fetch('http://localhost:5000/api/stats')
+        .then(res => res.json())
+        .then(data => {
+          if (data.totalProducts) document.getElementById('totalProducts').textContent = data.totalProducts;
+          if (data.totalOrders) document.getElementById('totalOrders').textContent = data.totalOrders;
+          if (data.totalRevenue) document.getElementById('totalRevenue').textContent = '$' + data.totalRevenue;
+        })
+        .catch(() => {
+          // Демо данные если API недоступен
+          document.getElementById('totalProducts').textContent = '42';
+          document.getElementById('totalOrders').textContent = '156';
+          document.getElementById('totalRevenue').textContent = '$12,450';
+        });
+    });
+  </script>
+</body>
+</html>
