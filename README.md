@@ -152,4 +152,5 @@ Revenue grouped by month
 # Team Members:
 
 Daniyar Sharipov: Backend, Database, API
+
 Nurlan Amangeldi: Frontend, UI, Integration
