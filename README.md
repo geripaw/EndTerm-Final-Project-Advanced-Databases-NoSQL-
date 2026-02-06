@@ -38,9 +38,9 @@
 
 **Collections:**
 
-- \*\*users\*\* — user accounts, roles (user/admin)
-- \*\*products\*\* — product catalog
-- \*\*orders\*\* — customer orders with items and total price
+- **users** — user accounts, roles (user/admin)
+- **products** — product catalog
+- **orders** — customer orders with items and total price
 
 
 
