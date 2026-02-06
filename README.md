@@ -3,10 +3,10 @@
 
 ## Project Description
 
-This project is a full-stack web application built with MongoDB, Express, Node.js, and React.
+**This project is a full-stack web application built with MongoDB, Express, Node.js, and React.**
 
 
-The system simulates a simple e-commerce platform with:
+**The system simulates a simple e-commerce platform with:**
 
 - users and authentication
 - products management
@@ -36,7 +36,7 @@ The system simulates a simple e-commerce platform with:
 
 ## Database Structure
 
-Collections:
+**Collections:**
 
 - \*\*users\*\* — user accounts, roles (user/admin)
 - \*\*products\*\* — product catalog
@@ -44,7 +44,7 @@ Collections:
 
 
 
-Relationships:
+**Relationships:**
 
 - orders.userId → users.\_id
 - orders.items.productId → products.\_id
@@ -104,31 +104,39 @@ Authentication
 
 ### API Endpoints
 
-Auth
+**Auth**
 POST /auth/register
+
 POST /auth/login
 
-Users
+**Users**
 GET /users/me
 
-Products
-
+**Products**
 GET /products
+
 POST /products (admin only)
+
 PATCH /products/:id (admin only)
+
 DELETE /products/:id (admin only)
 
-Orders
+**Orders**
 POST /orders
+
 GET /orders
+
 GET /orders/:id
+
 PATCH /orders/:id/items ($push)
+
 DELETE /orders/:id/items/:productId ($pull)
+
 PATCH /orders/:id/status
+
 DELETE /orders/:id (admin only)
 
-Analytics (Aggregation)
-
+**Analytics (Aggregation)**
 GET /analytics/top-products
 GET /analytics/revenue-by-country
 GET /analytics/revenue-by-month
@@ -140,6 +148,6 @@ Revenue grouped by country
 Revenue grouped by month
 
 # Team Members:
-
+йф
 Daniyar Sharipov: Backend, Database, API
 Nurlan Amangeldi: Frontend, UI, Integration
