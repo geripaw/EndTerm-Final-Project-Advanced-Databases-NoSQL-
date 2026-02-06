@@ -87,12 +87,9 @@ cd frontend
 npm install
 npm run dev
 
-
-
 Frontend will run on:
 
 http://localhost:5173
-
 
 Authentication
 
@@ -100,19 +97,20 @@ Authentication
 - Protected routes require Authorization header:
 - Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTdmZDkwMmU1Y2ZmNmE4Y2E3MWRmOTAiLCJpYXQiOjE3Njk5ODY3OTcsImV4cCI6MTc3MDU5MTU5N30.WzseKgFPTPB1UIwuNixPcw1ovvd8ASVvLTX79F5PRIA
 
-
-
 ### API Endpoints
 
 **Auth**
+
 POST /auth/register
 
 POST /auth/login
 
 **Users**
+
 GET /users/me
 
 **Products**
+
 GET /products
 
 POST /products (admin only)
@@ -122,6 +120,7 @@ PATCH /products/:id (admin only)
 DELETE /products/:id (admin only)
 
 **Orders**
+
 POST /orders
 
 GET /orders
@@ -137,8 +136,11 @@ PATCH /orders/:id/status
 DELETE /orders/:id (admin only)
 
 **Analytics (Aggregation)**
+
 GET /analytics/top-products
+
 GET /analytics/revenue-by-country
+
 GET /analytics/revenue-by-month
 
 ### Aggregation Features
@@ -148,6 +150,6 @@ Revenue grouped by country
 Revenue grouped by month
 
 # Team Members:
-йф
+
 Daniyar Sharipov: Backend, Database, API
 Nurlan Amangeldi: Frontend, UI, Integration
